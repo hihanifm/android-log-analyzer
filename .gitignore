@@ -1,0 +1,14 @@
+# Local bugreport/dumpstate samples
+samples/
+sample-data/
+components/android-log-browser/android_log_browser/samples/
+*.dumpstate.txt
+*.bugreport*.zip
+
+# Python build/install artifacts
+*.egg-info/
+build/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
