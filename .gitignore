@@ -12,3 +12,7 @@ dist/
 .venv/
 __pycache__/
 .pytest_cache/
+
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store
