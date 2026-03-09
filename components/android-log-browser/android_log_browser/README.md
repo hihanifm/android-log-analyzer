@@ -91,8 +91,10 @@ android-log-browser sections --input /path/to/dumpstate.txt --all --include-nois
 Generate interactive sections viewer (HTML metadata only; no embedded log text):
 
 ```bash
-android-log-browser sections-html --input /path/to/dumpstate.txt --output /tmp/sections_viewer.html
+android-log-browser sections-html --input /path/to/dumpstate.txt
 ```
+
+Default output file: `dumpstate-sections.html` (current working directory).
 
 Optional index export:
 

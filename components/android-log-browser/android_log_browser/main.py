@@ -237,7 +237,14 @@ def list_sections(
 @app.command("sections-html")
 def sections_html(
     input_path: Annotated[Path, typer.Option("--input", "-i", help="Input zip/txt/log/dir")],
-    output: Annotated[Path, typer.Option("--output", "-o", help="Output HTML file path")],
+    output: Annotated[
+        Path,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Output HTML file path (default: dumpstate-sections.html)",
+        ),
+    ] = Path("dumpstate-sections.html"),
     unique: Annotated[bool, typer.Option("--unique/--all", help="List unique section titles only")] = True,
     include_noisy: Annotated[
         bool,
@@ -274,7 +281,7 @@ def sections_html(
             ]
             index_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
-        typer.echo(f"Wrote sections HTML viewer: {output}")
+        typer.echo(f"Wrote sections HTML viewer: {output.resolve()}")
         typer.echo(f"Sections indexed: {len(sections)}")
         typer.echo(
             "Open the HTML in a browser, then click 'Open dumpstate file' to select the source file."
