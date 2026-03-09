@@ -14,6 +14,8 @@
 
 ## Setup
 
+### macOS/Linux
+
 One-command setup (venv + editable install + shell completion):
 
 ```bash
@@ -32,6 +34,30 @@ Manual setup:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e components/android-log-browser
+```
+
+### Windows (PowerShell)
+
+One-command setup (venv + editable install):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File components\android-log-browser\scripts\setup.ps1
+```
+
+Manual setup:
+
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -e components\android-log-browser
+```
+
+### Windows (Command Prompt)
+
+```bat
+py -3 -m venv .venv
+.\.venv\Scripts\activate.bat
+pip install -e components\android-log-browser
 ```
 
 ## Usage
@@ -80,6 +106,13 @@ Write output to a file (also prints to terminal):
 android-log-browser sections --input /path/to/dumpstate.txt --output /tmp/sections.txt
 ```
 
+Windows-safe output path examples (PowerShell):
+
+```powershell
+android-log-browser sections-html --input C:\logs\dumpstate.txt --output "$env:TEMP\sections_viewer.html"
+android-log-browser sections --input C:\logs\dumpstate.txt --output "$env:TEMP\sections.txt"
+```
+
 Alternative invocation (without install):
 
 ```bash
@@ -88,6 +121,10 @@ python -m android_log_browser sections --input /path/to/dumpstate.txt
 
 ## Notes
 
+- CLI commands are cross-platform (macOS/Linux/Windows) because the parser and command logic are pure Python.
+- Setup helper scripts are OS-specific:
+  - macOS/Linux: `components/android-log-browser/scripts/setup.sh`
+  - Windows PowerShell: `components/android-log-browser/scripts/setup.ps1`
 - Buffer/service parsing uses heuristics because bugreport formats vary across Android/OEM versions.
 - `sections-html` keeps HTML lightweight and uses browser File API. Open the HTML and select the dumpstate file once via file picker to load section content dynamically.
 - This is a CLI-first foundation; RCA synthesis and domain routing come next.
